@@ -71,15 +71,19 @@ public class CategoryServiceImpl implements CategoryService {
         return result;
     }
 
+    /**
+     * 根据id删除分类
+     * @param id
+     */
     @Override
     public void deleteById(Integer id) {
         // 判断当前分类id是否关联了菜品和套餐信息
-        Integer count = dishMapper.queryById(id);
+        Integer count = dishMapper.countById(id);
         if(count > 0)
         {
             throw new DeletionNotAllowedException(MessageConstant.CATEGORY_BE_RELATED_BY_DISH);
         }
-        count = setmealMapper.queryById(id);
+        count = setmealMapper.countById(id);
         if(count > 0)
         {
             throw new DeletionNotAllowedException(MessageConstant.CATEGORY_BE_RELATED_BY_SETMEAL);

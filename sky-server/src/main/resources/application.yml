@@ -33,6 +33,8 @@ logging:
         mapper: debug
         service: debug
         controller: debug
+    # 开启spring事务管理日志
+    org.springframework.jdbc.support.JdbcTransactionManager: debug
 
 
 sky:
