@@ -46,6 +46,14 @@ public interface DishMapper {
     @Select("select * from dish where id = #{id}")
     Dish queryById(Integer id);
 
+    /**
+     * 根据id查询菜品对象
+     * @param id
+     * @return
+     */
+    @Select("select * from dish where id = #{id}")
+    Dish queryByIdIsLong(Long id);
+
     //    /**
     //     * 根据id删除菜品
     //     * @param id
@@ -65,4 +73,20 @@ public interface DishMapper {
      */
     @AutoFill(value = OperationType.UPDATE)
     void update(Dish dish);
+
+    /**
+     * 根据分类id查询菜品
+     * @param categoryId
+     * @return
+     */
+    @Select("select * from dish where category_id = #{categoryId}")
+    List<Dish> getByCategoryId(Long categoryId);
+
+    /**
+     * 根据套餐id获取菜品数据
+     * @param id
+     * @return
+     */
+    @Select("select a.* from dish a left join setmeal_dish b on a.id = b.dish_id where b.setmeal_id = #{id}")
+    List<Dish> getBySetmealId(Long id);
 }

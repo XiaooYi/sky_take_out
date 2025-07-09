@@ -80,7 +80,7 @@ public class CategoryController {
 
     @GetMapping("/list")
     @ApiOperation("根据类型查询分类")
-    // TODO 这个接口前端貌似没有使用到，前端使用的是分页查询的接口
+    // 我明白了，这个接口用在新增菜品的时候，菜品必须在某个分类下，因为加载新增菜品页面的时候同时加载该接口，获取菜品分类
     public Result queryByType(Integer type)
     {
         List<Category> category = categoryService.queryByType(type);
