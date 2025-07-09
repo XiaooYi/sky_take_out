@@ -6,6 +6,8 @@
 day03中的根据分类id查询菜品(/admin/dish/list)接口似乎不需要。因为已经在菜品分页查询中包括了。且前端请求的是 Path：/admin/dish/page 分页查询这个接口，而不是 Path： /admin/dish/list 这个接口。
 day02中的根据类型查询分类(Path： /admin/category/list)接口一样。
 
+错了，我明白了，以上接口用得到。在新增套餐以及新增菜品的时候，会根据类型查询分类，以及根据分类id查询菜品。
+
 #### 软件架构
 软件架构说明
 
