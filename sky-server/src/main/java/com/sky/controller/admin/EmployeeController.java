@@ -46,9 +46,6 @@ public class EmployeeController {
     @ApiOperation(value = "员工登录")
     public Result<EmployeeLoginVO> login(@RequestBody EmployeeLoginDTO employeeLoginDTO) {
         log.info("员工登录：{}", employeeLoginDTO);
-        String exist = "123456";
-        String md5Exist = DigestUtils.md5DigestAsHex(exist.getBytes(StandardCharsets.UTF_8));
-        log.info("123456的哈希值是:{}",md5Exist);
         Employee employee = employeeService.login(employeeLoginDTO);
 
         //登录成功后，生成jwt令牌
