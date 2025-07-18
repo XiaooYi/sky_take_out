@@ -1,12 +1,13 @@
 package com.sky.mapper;
 
 
+import com.sky.dto.OrdersPageQueryDTO;
 import com.sky.entity.Orders;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import com.sky.vo.OrderVO;
+import org.apache.ibatis.annotations.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Mapper
 public interface OrderMapper {
@@ -39,4 +40,36 @@ public interface OrderMapper {
             "where number = #{orderNumber}")
     void updateStatus(Integer orderStatus, Integer orderPaidStatus, LocalDateTime check_out_time, String orderNumber);
 
+
+    /**
+     * 根据订单分页dto查询订单数据
+     * @param queryDTO
+     * @return
+     */
+    @Options(useGeneratedKeys = true,keyProperty = "ids")
+    List<Orders> pageQuery(OrdersPageQueryDTO queryDTO);
+
+    /**
+     * 根据id查询订单信息
+     * @param id
+     * @return
+     */
+    @Select("select * from orders where id = #{id}")
+    Orders getById(Long id);
+
+    /**
+     * 根据id删除订单信息
+     * @param id
+     */
+    @Delete("delete from orders where id = #{id}")
+    void deleteById(Long id);
+
+
+    /**
+     * 根据订单状态查询订单数量
+     * @param deliveryInProgress
+     * @return
+     */
+    @Select("select count(id) from orders where status = #{status}")
+    Integer countStatus(Integer deliveryInProgress);
 }

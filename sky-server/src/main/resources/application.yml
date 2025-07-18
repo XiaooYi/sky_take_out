@@ -72,4 +72,8 @@ sky:
     weChatPayCertFilePath: ${sky.wechat.weChatPayCertFilePath}
     notifyUrl: ${sky.wechat.notifyUrl}
     refundNotifyUrl: ${sky.wechat.refundNotifyUrl}
+  shop:
+    address: 北京市海淀区上地十街10号
+  gaode:
+    Key: 657b1c65195041a96c7d3530b51b0d2b
 
