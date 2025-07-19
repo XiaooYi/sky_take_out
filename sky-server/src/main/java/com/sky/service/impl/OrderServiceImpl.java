@@ -16,6 +16,7 @@ import com.sky.service.OrderService;
 import com.sky.utils.HttpClientUtil;
 import com.sky.utils.WeChatPayUtil;
 import com.sky.vo.*;
+import com.sky.websocket.WebSocketServer;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.bridge.Message;
 import org.aspectj.weaver.ast.Or;
@@ -56,6 +57,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private HttpClientUtil httpClientUtil;
+
+    @Autowired
+    private WebSocketServer webSocketServer;
 
 
     // 注入商家地址和高德地图开发key
@@ -195,6 +199,14 @@ public class OrderServiceImpl implements OrderService {
                 .build();
 
         orderMapper.update(orders);
+
+        ////////////////////////////////////////////////////////
+        Map map = new HashMap();
+        map.put("type",1); // 消息类型，1表示来单提醒
+        map.put("orderId",orders.getId());
+        map.put("content","订单号" + outTradeNo);
+        webSocketServer.sendToAllClient(JSON.toJSONString(map));
+        ////////////////////////////////////////////////////////
     }
 
     /**
@@ -518,6 +530,27 @@ public class OrderServiceImpl implements OrderService {
         orders.setStatus(Orders.COMPLETED);
         orders.setDeliveryTime(LocalDateTime.now());
         orderMapper.update(orders);
+    }
+
+    /**
+     * 用户催单
+     * @param id
+     */
+    @Override
+    public void reminder(Long id) {
+        // 查询订单是否存在
+        Orders orders = orderMapper.getById(id);
+        if(orders == null){
+            throw new OrderBusinessException(MessageConstant.ORDER_NOT_FOUND);
+        }
+
+        // 使用websocket向客户端发送催单消息
+        Map map = new HashMap();
+        map.put("type",2); // 2表示用户催单
+        map.put("orderId",orders.getId());
+        map.put("content","订单号" + orders.getNumber());
+        webSocketServer.sendToAllClient(JSON.toJSONString(map));
+
     }
 
     /**
