@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.jws.soap.SOAPBinding;
+import javax.servlet.http.HttpServletResponse;
 import java.time.LocalDate;
 
 
@@ -88,6 +89,12 @@ public class ReportController {
     }
 
 
+    /**
+     * 查询销量排名top10接口
+     * @param begin
+     * @param end
+     * @return
+     */
     @GetMapping("/top10")
     @ApiOperation("查询销量排名top10接口")
     public Result<SalesTop10ReportVO> salesTop10(
@@ -98,5 +105,15 @@ public class ReportController {
         log.info("查询销量排名top10接口:{},{}",begin,end);
         SalesTop10ReportVO top10ReportVO = reportService.salesTop10(begin,end);
         return Result.success(top10ReportVO);
+    }
+
+    /**
+     * 导出运营报表数据
+     * @param response
+     */
+    @GetMapping("/export")
+    @ApiOperation("导出Excel报表接口")
+    public void export(HttpServletResponse response){
+        reportService.exportBusinessData(response);
     }
 }

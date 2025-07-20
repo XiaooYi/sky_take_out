@@ -69,4 +69,20 @@
         </where>
         order by order_time desc
     </select>
+
+    <select id="countByMap" resultType="java.lang.Integer" parameterType="java.util.Map">
+        select count(*) from orders
+        where
+        order_time &gt;= #{map.begin}
+        <if test="map.status!=null">
+            and status=#{map.status}
+        </if>
+    </select>
+
+    <select id="sumByMap" resultType="java.lang.Double" parameterType="java.util.Map">
+        select sum(amount)
+        from orders
+        where order_time &lt;= #{map.end}
+          and order_time &gt;= #{map.begin}
+    </select>
 </mapper>
