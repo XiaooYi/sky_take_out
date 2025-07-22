@@ -25,7 +25,7 @@ pull openjdk:tags # tags为自己的版本号，我这里为8
 
 新建nginx文件夹，放入前端打包好的html文件夹和配置文件nginx.conf。 
 
-html文件夹在上面代码中提供。
+html文件夹在以上docker部署教程文件nginx/html中提供。
 
 nginx.conf配置如下：
 
@@ -132,7 +132,7 @@ http {
 
 如果以上目录宿主机不存在，则会自动创建。
 
-本项目下，在/root/mysql/init下提供一个sky_take_out_inti.sql脚本就够了。脚本文件在以上给出的代码中。
+本项目下，在/root/mysql/init下提供一个sky_take_out_inti.sql脚本就够了。脚本文件在以上docker部署教程文件中提供。
 
 ### redis容器没有额外需要配置的文件
 
