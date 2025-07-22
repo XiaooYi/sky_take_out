@@ -231,7 +231,7 @@ networks: # 这里进行新建容器的网络
 
 到这里，所有的配置项都已经完成。这时，root目录下应该包含nginx文件夹，mysql文件夹，docker-compose.yaml文件，sky.jar包和Dockerfile文件。只需要用到nginx,mysql,docker-compose.yaml三个就够了。
 
-![image-20250722220206256](C:\Users\Outstanding4Boy\AppData\Roaming\Typora\typora-user-images\image-20250722220206256.png)
+![](./images/2.png "技术选型")
 
 运行
 
