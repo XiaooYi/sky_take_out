@@ -8,8 +8,8 @@ sky:
     password: 123
   alioss:
     endpoint: oss-cn-beijing.aliyuncs.com
-    access-key-id: LTAI5tN5GMEgw78sB2vGd2cZ
-    access-key-secret: BmIdA8ubiqxn9zadtOp2gkHmxh1zyL
+    access-key-id: # 填入自己的
+    access-key-secret: # 填入自己的
     bucket-name: sky-take-out-single
   redis:
     host: redis
@@ -17,8 +17,8 @@ sky:
     password:
     database: 2
   wechat:
-    appid: wxcb905e8be256c849
-    secret: dbfa06a924c44e520154d81b6613d489
+    appid: # 填入自己的
+    secret: # 填入自己的
     mchid: 1561414331
     mchSerialNo: 4B3B3DC35414AD50B1B755BAF8DE9CC7CF407606
     privateKeyFilePath: D:\apiclient_key.pem
